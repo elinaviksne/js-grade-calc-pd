@@ -32,19 +32,23 @@
       <option value="letter">Burtu vērtējums (A, B, C utt.)</option></select
     ><br /><br />
 
-    <button>Aprēķināt vērtējumu</button>
+    <button id="calculate-btn">Aprēķināt vērtējumu</button>
+    <p id="result"></p>
 
     <script>
       const calculateBtn = document.getElementById("calculate-btn");
       const nameInput = document.getElementById("name");
+      const pointsInput = document.getElementById("points");
       const maxPointsInput = document.getElementById("max-points");
       const gradingSchemeSelect = document.getElementById("grading-scheme");
       const resultDiv = document.getElementById("result");
 
+      calculateBtn.addEventListener("click", handleClick());
+
       function handleClick() {
         const name = nameInput.value;
-        const points = parseFloat(pointsInput);
-        const maxPoints = parseFloat(maxPointsInput);
+        const points = parseFloat(pointsInput.value);
+        const maxPoints = parseFloat(maxPointsInput.value);
         const gradingScheme = gradingSchemeSelect.value;
 
         // Validate inputs
@@ -78,8 +82,6 @@
 
         resultDiv.innerHTML = grade;
       }
-
-      calculateBtn.addEventListener("click", handleClick());
 
       //   === TERMINI un KODA PIEMĒRI ===
       // input, button, id, class, script, const, let, document, querySelector, getElementById,
