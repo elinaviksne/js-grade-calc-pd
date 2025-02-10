@@ -50,6 +50,7 @@
         const points = parseFloat(pointsInput.value);
         const maxPoints = parseFloat(maxPointsInput.value);
         const gradingScheme = gradingSchemeSelect.value;
+        console.log(gradingScheme);
 
         // Validate inputs
         if (!name || isNaN(points) || isNaN(maxPoints) || maxPoints <= 0) {
@@ -62,11 +63,11 @@
           return;
         }
 
-        const grade = "";
-        if (gradingScheme === "procenti") {
+        let grade = "";
+        if (gradingScheme === "percentage") {
           const percentage = (points / maxPoints) * 100;
           grade = `Jūsu procentuālā vērtība ir: ${percentage.toFixed(2)}%`;
-        } else if (gradingScheme === "burti") {
+        } else if (gradingScheme === "letter") {
           if (points >= 90) {
             grade = "Jūsu burtu vērtējums ir: A";
           } else if (points >= 80) {
@@ -79,7 +80,7 @@
             grade = "Jūsu burtu vērtējums ir: F";
           }
         }
-
+        console.log(grade);
         resultDiv.innerHTML = grade;
       }
 
@@ -97,6 +98,14 @@
       //
       // JSON.stringify
       // JSON.parse
+
+      //1.uzd: Jāsalabo aplikācija, kas aprēķina studenta vērtējumu, pamatojoties uz iegūtajiem punktiem un maksimālo punktu skaitu.
+      // 2.uzd: Jāveic aplikācijas refaktorēšana, lai lietotāja ievades pārbaude (validācija) un atbildes kalkulācija tiktu veiktas atsevišķās funkcijās.
+      // 3.uzd: Papildināt aplikāciju ar jaunu funkcionalitāti “Vēsture”, kas saglabātu lietotāja veiktās kalkulācijas un izvadītu tās sarakstā zem rezultāta izvades.
+      // Vēsturei ir jāsaglabājas pēc lapas pārlādes.
+      // Katram vēstures ierakstam ir jasatur vārds un veiktā aprēķina rezultāts.
+      // Lietotājs var dzēst katru vēstures ierakstu.
+      // Zem vēstures ir jāizvada visu ierakstu vidējais rezultāts procentos. -->
     </script>
   </body>
 </html>
