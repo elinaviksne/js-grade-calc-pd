@@ -34,6 +34,7 @@
 
     <button id="calculate-btn">Aprēķināt vērtējumu</button>
     <p id="result"></p>
+    <ul id="history"></ul>
 
     <script>
       const calculateBtn = document.getElementById("calculate-btn");
@@ -42,8 +43,9 @@
       const maxPointsInput = document.getElementById("max-points");
       const gradingSchemeSelect = document.getElementById("grading-scheme");
       const resultDiv = document.getElementById("result");
+      const historyList = document.getElementById("history");
 
-      calculateBtn.addEventListener("click", handleClick());
+      calculateBtn.addEventListener("click", handleClick);
 
       function handleClick() {
         const name = nameInput.value;
@@ -52,12 +54,15 @@
         const gradingScheme = gradingSchemeSelect.value;
         // console.log(gradingScheme);
         // console.log(grade);
+        let result;
         let errors = validateUserInput(name, points, maxPoints);
         if (errors == 0) {
-          resultDiv.innerHTML = calculate(points, maxPoints, gradingScheme);
+          result = calculate(points, maxPoints, gradingScheme);
         } else {
-          resultDiv.innerHTML = errors.join("<br>");
+          result = errors.join("<br>");
         }
+        displayHistory(result);
+        resultDiv.innerHTML = result;
       }
 
       function validateUserInput(name, points, maxPoints) {
@@ -91,6 +96,19 @@
           }
         }
         return grade;
+      }
+
+      function displayHistory(res) {
+        const li = document.createElement("li");
+        li.innerHTML = res;
+        const delBtn = document.createElement("button");
+        delBtn.innerHTML = "dzēst";
+        delBtn.addEventListener("click", function () {
+          historyList.removeChild(li);
+        });
+
+        li.appendChild(delBtn);
+        historyList.appendChild(li);
       }
 
       //   === TERMINI un KODA PIEMĒRI ===
