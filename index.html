@@ -61,7 +61,7 @@
         } else {
           result = errors.join("<br>");
         }
-        displayHistory(result);
+        displayHistory(result, name);
         resultDiv.innerHTML = result;
       }
 
@@ -98,9 +98,9 @@
         return grade;
       }
 
-      function displayHistory(res) {
+      function displayHistory(res, name) {
         const li = document.createElement("li");
-        li.innerHTML = res;
+        li.innerHTML = name + " " + res;
         const delBtn = document.createElement("button");
         delBtn.innerHTML = "dzēst";
         delBtn.addEventListener("click", function () {
@@ -126,7 +126,7 @@
       // JSON.stringify
       // JSON.parse
 
-      //1.uzd: Jāsalabo aplikācija, kas aprēķina studenta vērtējumu, pamatojoties uz iegūtajiem punktiem un maksimālo punktu skaitu.
+      // 1.uzd: Jāsalabo aplikācija, kas aprēķina studenta vērtējumu, pamatojoties uz iegūtajiem punktiem un maksimālo punktu skaitu.
       // 2.uzd: Jāveic aplikācijas refaktorēšana, lai lietotāja ievades pārbaude (validācija) un atbildes kalkulācija tiktu veiktas atsevišķās funkcijās.
       // 3.uzd: Papildināt aplikāciju ar jaunu funkcionalitāti “Vēsture”, kas saglabātu lietotāja veiktās kalkulācijas un izvadītu tās sarakstā zem rezultāta izvades.
       // Vēsturei ir jāsaglabājas pēc lapas pārlādes.
