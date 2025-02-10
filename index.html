@@ -50,19 +50,29 @@
         const points = parseFloat(pointsInput.value);
         const maxPoints = parseFloat(maxPointsInput.value);
         const gradingScheme = gradingSchemeSelect.value;
-        console.log(gradingScheme);
+        // console.log(gradingScheme);
+        // console.log(grade);
+        let errors = validateUserInput(name, points, maxPoints);
+        if (errors == 0) {
+          resultDiv.innerHTML = calculate(points, maxPoints, gradingScheme);
+        } else {
+          resultDiv.innerHTML = errors.join("<br>");
+        }
+      }
 
+      function validateUserInput(name, points, maxPoints) {
         // Validate inputs
+        let errors = [];
         if (!name || isNaN(points) || isNaN(maxPoints) || maxPoints <= 0) {
-          resultDiv.innerHTML = "Lūdzu, aizpildiet visus laukus pareizi.";
-          return;
+          errors.push("Lūdzu, aizpildiet visus laukus pareizi.");
         }
         if (points < 0 || points > maxPoints) {
-          resultDiv.innerHTML =
-            "Iegūtie punkti nedrīkst pārsniegt maksimālos punktus.";
-          return;
+          errors.push("Iegūtie punkti nedrīkst pārsniegt maksimālos punktus.");
         }
+        return errors;
+      }
 
+      function calculate(points, maxPoints, gradingScheme) {
         let grade = "";
         if (gradingScheme === "percentage") {
           const percentage = (points / maxPoints) * 100;
@@ -80,8 +90,7 @@
             grade = "Jūsu burtu vērtējums ir: F";
           }
         }
-        console.log(grade);
-        resultDiv.innerHTML = grade;
+        return grade;
       }
 
       //   === TERMINI un KODA PIEMĒRI ===
